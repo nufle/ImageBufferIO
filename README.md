@@ -33,6 +33,7 @@ Compile it with **GDAL** include directories and library available.
     ...
     
     std::string imagePath = "PATH_TO_THE_INPUT_IMAGE";
+    // No need to allocate memory
     std::vector<float *> imageBuffer;
     std::vector<int> imageDimensions;
 
@@ -40,6 +41,10 @@ Compile it with **GDAL** include directories and library available.
                                                      imageBuffer,
                                                      imageDimensions,
                                                      true);
+    ...  
+    
+    // Do not forget to free the buffer
+    ImageBufferIO<unsigned char>::cleanBuffer(imageBuffer);
 ```
 You now can play with the values of the image contained  
 
@@ -70,14 +75,20 @@ You now can play with the values of the image contained
                                                      imagePath,
                                                      driver,
                                                      true);
+    ... 
+    
+    // Do not forget to free the buffer
+    delete [] imageBuffer;
 
 ```
 
 
 ## Limitations
 Your GDAL version may not have all the desired plug-ins you would like to use.
+This has not been tested on many archirectures. This could result in inconsistencies between the size of the images' pixel datatype and the size of the buffer pixel.
 
 ### Performances
+The performances of this tool relies fully on the performances of GDAL.
 
 ## Dependencies
 
