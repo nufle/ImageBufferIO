@@ -6,6 +6,7 @@ logs in the context of scientific image processing. In such a context,
 images are often floating point valued.  
 Image format available :  
 - Any that your GDAL software can handle  
+
 Data type available for the output buffers / images :  
 - unsigned char / Byte
 - short int / Int16
