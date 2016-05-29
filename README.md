@@ -3,9 +3,9 @@ Read image files into various data type buffers in **C++**.
 Based on [GDAL](http://www.gdal.org/).  
 The main goal of this tool was to quickly generate intermediate image 
 logs in the context of scientific image processing. In such a context,
-images are often floating point valued.
+images are often floating point valued.  
 Image format available :  
-	- Any that your GDAL software can handle  
+- Any that your GDAL software can handle  
 Data type available for the output buffers / images :  
 - unsigned char / Byte
 - short int / Int16
@@ -28,7 +28,11 @@ Compile it with **GDAL** include directories and library available.
 *Read an image into a float-valued buffer*
 
 ```c++
-    std::string imagePath = "PATH_TO_THE_IMAGE";
+    #include "ImageBufferIO.h"
+    
+    ...
+    
+    std::string imagePath = "PATH_TO_THE_INPUT_IMAGE";
     std::vector<float *> imageBuffer;
     std::vector<int> imageDimensions;
 
@@ -37,10 +41,35 @@ Compile it with **GDAL** include directories and library available.
                                                      imageDimensions,
                                                      true);
 ```
+You now can play with the values of the image contained  
 
-*Write a data buffer as an image* :
+*Write an empty 512x512x1 data buffer in an image* :
 
 ```c++
+    #include "ImageBufferIO.h"
+
+    ... 
+    
+    std::string imagePath = "PATH_TO_THE_OUTPUT_IMAGE";
+    std::string driver = "GTIFF";
+    int nbRow = 512, nbCol = 512;
+    float * imageBuffer = new float[nbRow*nbCol];
+    for (int i = 0; i < nbRow*nbCol; i++)
+        imageBuffer[i]=0.0;
+    
+    std::vector<float*> image;
+    image.push_back(imageBuffer)
+    
+    std::vector<int> dimensions;
+    dimensions.push_back(nbCol);
+    dimensions.push_back(nbRow);
+    dimensions.push_back(1);
+    
+    bool status = ImageBufferIO<float>::buffer2Image(image,
+                                                     dimensions,
+                                                     imagePath,
+                                                     driver,
+                                                     true);
 
 ```
 
