@@ -1,6 +1,17 @@
-//
-// Created by arnaud mallen on 28/05/16.
-//
+/**
+ * @file : ImageBufferIO.h
+ * @author : Arnaud Mallen
+ * @date : 29/05/2016
+ * @version : 1.0
+ *
+ * @brief Image buffer reading and writing using GDAL
+ *
+ * @section DESCRIPTION
+ *
+ *
+ *
+ */
+
 
 #ifndef IMAGE2BUFFER_IMAGEBUFFERIO_H
 #define IMAGE2BUFFER_IMAGEBUFFERIO_H
